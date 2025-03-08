@@ -17,7 +17,7 @@ builder.Services.AddDbContext<PerformanceAnalyzerApi.Data.AppDbContext>(options 
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFirebase", builder => builder.WithOrigins("https://member-feedback--memberfeedback-2e570.us-central1.hosted.app").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+    options.AddPolicy("AllowFirebase", builder => builder.WithOrigins("https://performance-analyzer--performanceanalyzer-be32e.us-central1.hosted.app").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 });
 
 var app = builder.Build();
