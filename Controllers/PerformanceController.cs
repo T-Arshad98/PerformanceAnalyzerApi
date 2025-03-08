@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PerformanceAnalyzerApi.Data;
 using PerformanceAnalyzerApi.Models;
+using System.Net.Http;
 using System.Diagnostics;
 
 namespace PerformanceAnalyzerApi.Controllers
@@ -41,7 +42,6 @@ namespace PerformanceAnalyzerApi.Controllers
         }
 
         [HttpGet]
-        [ResponseCache(Duration = 300)]
         public async Task<ActionResult<IEnumerable<PerformanceResult>>> GetResults()
         {
             return await _context.PerformanceResults.ToListAsync();
