@@ -15,10 +15,12 @@ builder.Services.AddDbContext<PerformanceAnalyzerApi.Data.AppDbContext>(options 
     options.UseSqlServer(connString);
 });
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowFirebase", builder => builder.WithOrigins("https://performance-analyzer--performanceanalyzer-be32e.us-central1.hosted.app").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
-});
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        }));
 
 var app = builder.Build();
 
@@ -30,7 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors("AllowFirebase");
+app.UseCors("MyPolicy");
 app.UseAuthorization();
 app.MapControllers();
 
